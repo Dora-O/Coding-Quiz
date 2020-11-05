@@ -10,14 +10,12 @@
 #time {
     display: block;
     float: right;
-    
     color: darkcyan;
 }
 
 #score{
     display: block;
     float: left;
-
     color: darkcyan;
     text-decoration: none;
 }
