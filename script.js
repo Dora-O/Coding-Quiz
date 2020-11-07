@@ -1,4 +1,9 @@
-var quizQuestions = [{
+var score = 0;
+var currentQuestion = -1;
+var timeLeft = 0;
+var timer;
+
+var questions = [{
     question: "What is the correct method of rounding the number 7.25 to the nearest integer?",
     choiceA: "round(7.25)",
     choiceB: "Math.rnd(7.25)",
@@ -61,7 +66,17 @@ var quizQuestions = [{
 },
 ];
 
-var score = 0;
-var currentQuestion = -1;
-var timeLeft = 0;
-var timer;
+function start(){
+    timeLeft = 90;
+    document.getElementById("timeLeft")=timeLeft;
+
+    timer = setInterval(function(){
+        timeLeft--;
+        document.getElementById("timeLeft")=timeLeft;
+
+        if (timeLeft<= 0){
+            clearInterval(timer);
+            endGame();
+        }
+    })
+}
