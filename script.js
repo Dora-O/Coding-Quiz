@@ -80,3 +80,16 @@ function start(){
         }
     })
 }
+
+function endGame(){
+    clearInterval(timer);
+    var quizEnding = `
+    <h2>Game over!</h2>
+    <h3>You got a ` + score +  ` /100!</h3>
+    <h3>That means you got ` + score / 20 +  ` questions correct!</h3>
+    <input type="text" id="name" placeholder="First name"> 
+    <button onclick="setScore()">Set score!</button>`;
+
+    document.getElementById("quizQuestions")= quizEnding;
+}
+
