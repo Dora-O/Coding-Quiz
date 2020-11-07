@@ -60,3 +60,8 @@ var quizQuestions = [{
     correctAnswer: "d"
 },
 ];
+
+var score = 0;
+var currentQuestion = -1;
+var timeLeft = 0;
+var timer;
