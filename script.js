@@ -107,3 +107,13 @@ function getScore() {
 
     document.getElementById("quizQuestions") = quizContent;
 }
+
+function correct() {
+    score += 15;
+    nextQuestion();
+}
+
+function incorrect () {
+    timeLeft -= 10;
+    nextQuestion();
+}
