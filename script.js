@@ -45,30 +45,52 @@ var questions = [{
 },
 ];
 
-function start(){
+function start() {
     timeLeft = 90;
-    document.getElementById("timeLeft")=timeLeft;
+    document.getElementById("timeLeft") = timeLeft;
 
-    timer = setInterval(function(){
+    timer = setInterval(function () {
         timeLeft--;
-        document.getElementById("timeLeft")=timeLeft;
+        document.getElementById("timeLeft") = timeLeft;
 
-        if (timeLeft<= 0){
+        if (timeLeft <= 0) {
             clearInterval(timer);
             endGame();
         }
     })
 }
 
-function endGame(){
+function endGame() {
     clearInterval(timer);
     var quizEnding = `
     <h2>Game over!</h2>
-    <h3>You got a ` + score +  ` /100!</h3>
-    <h3>That means you got ` + score / 20 +  ` questions correct!</h3>
+    <h3>You got a ` + score + ` /100!</h3>
+    <h3>That means you got ` + score / 20 + ` questions correct!</h3>
     <input type="text" id="name" placeholder="First name"> 
     <button onclick="setScore()">Set score!</button>`;
 
-    document.getElementById("quizQuestions")= quizEnding;
+    document.getElementById("quizQuestions") = quizEnding;
 }
 
+function nextQuestion() {
+    currentQuestion++;
+    if (currentQuestion > questions.length - 1) {
+        endGame();
+        return;
+    }
+
+    var quizContent = "<h2>" + questions[currentQuestion].question + "</h2>"
+
+    for (var buttonLoop = 0; buttonLoop < questions[currentQuestion].options.length; buttonLoop++) {
+        var buttonCode = "<button onclick=\"[ANSWER]\">[OPTIONS]</button>";
+        buttonCode = buttonCode.replace("[OPTION]", questions[currentQuestion].options[buttonLoop]);
+        if (questions[currentQuestion].options[buttonLoop] == questions[currentQuestion].answer) {
+            buttonCode = buttonCode.replace("[ANSWER]", "correct()");
+        } else {
+            buttonCode = buttonCode.replace("[ANSWER]", "incorrect()");
+        }
+        quizContent += buttonCode
+    }
+
+    document.getElementById("quizQuestions").innerHTML = quizContent;
+}
